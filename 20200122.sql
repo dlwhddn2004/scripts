@@ -83,7 +83,7 @@ SELECT 'SELECT * FROM ' || table_name || ';' AS QUERY
 FROM user_tables;
 
 -- || --> CONCAT 으로 이용한다면?
-SELECT CONCAT (CONCAT('SELECT * FROM ', table_name),';') as query
+SELECT CONCAT(CONCAT('SELECT * FROM ', table_name),';') as query
 FROM user_tables;
 
 --int a = 5; //할당, 대입 연산자
@@ -140,7 +140,7 @@ where deptno >='30';
 --입사일자가 1980년 12월 17일 직원만조회
 SELECT *
 FROM EMP
-WHERE hiredate = '80.12.17';
+WHERE hiredate = '1980.12.17';
 
 --TO_DATE = 문자열을 data 타입으로 변경하는 함수
 --TO_DATE(날짜형식 문자열, 첫번째 인자의 형식) 첫번째 인자란 앞 문자열의 형식을 써주는거
@@ -169,3 +169,14 @@ SELECT ename, hiredate
 FROM emp
 where HIREDATE BETWEEN TO_DATE('1982/01/01','YYYY/MM/DD') AND TO_DATE('19830101','YYYY/MM/DD');
 
+SELECT ename, hiredate
+FROM emp
+WHERE haredate <= '1983.01.01' AND haredate >= '1982.01.01';
+
+SELECT *
+FROM users
+where userid IN ('brown', 'cony', 'sally');
+
+SELECT mem_id, mem_name
+FROM member
+where mem_name LIKE '신%';
