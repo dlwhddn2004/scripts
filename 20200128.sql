@@ -191,9 +191,10 @@ FROM emp;
     --숫자 표기 : 숫자
     --문자 표기 : 싱글 쿼테이션 + 문자열 + 싱글 쿼테이션 --> '문자열'
     --날짜 표기 : TO_DATE('문자열 날짜 값','문자열 날짜 값의 표기 형식') --> TO_DATD('2020.01.28', 'YYYY.DD.MM')
-SELECT SYSDATE + 5, SYSDATE +1/24
+SELECT  TO_DATE('2019.12.31','YYYY/MM/DD') LASTDAY,
+TO_DATE('2019.12.26' ,'YYYY.MM.DD') LASTDAY_BEFORE5, 
+ SYSDATE NOW ,SYSDATE -3 NOW_BEFORE3
 FROM dual;
-
 
 
 
