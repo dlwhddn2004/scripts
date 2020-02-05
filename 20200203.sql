@@ -40,6 +40,8 @@ FROM customer c, cycle cy ,product p
 WHERE c.cid= cy.cid AND cy.pid =p.pid 
 AND c.cnm IN('brown' , 'sally');
 
+
+
 --조인 실습 6 : join을 하면서 ROW를 제한하는 조건을 결합 , 그룹함수 적용
 
 SELECT c.cid, c.cnm, cy.pid, p.pnm,sum(cy.cnt)
@@ -170,7 +172,8 @@ FROM  buyprod d ,prod p
 WHERE d.buy_prod(+) = p.prod_id 
 AND d.buy_date(+) = TO_DATE('05/01/25', 'YY/MM/DD');
 
-
+SELECT b.buy_date,b.buy_prod, p.prod_id, p.prod_name, b.buy_qty
+FROM buyprod b RIGHT OUTER JOIN prod p ON (b.buy_prod = p.prod_id AND b.buy_date = TO_DATE('05/01/25', 'YY/MM/DD'));
 
 --outerjoin 실습2
 SELECT nvl(d.buy_date,TO_DATE('05/01/25','YY/MM/DD')),d.buy_prod, p.prod_id, p.prod_name, d.buy_qty

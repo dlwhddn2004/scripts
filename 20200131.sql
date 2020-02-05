@@ -171,3 +171,4 @@ SELECT m.mem_id, m.mem_name, p.prod_id, p.prod_name,c.cart_qty
 FROM member m, cart c, prod p
 WHERE m.mem_id = c.cart_member and c.cart_prod = p.prod_id;
 
+

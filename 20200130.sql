@@ -27,7 +27,7 @@ SELECT empno, ename,
 --cond2
 --올해년도가 짝수이면
 --입사년도가 짝수일 때 건강검진 대상자
---입사년도가 홀수일 때 건감검진 비대상자
+--입사년도가 홀수일 때 건강검진 비대상자
 
 --올해년도가 홀수이면
 --입사년도가 짝수일 때 건강검진 비대상자
@@ -43,7 +43,7 @@ SELECT empno, ename,
         
     SELECT empno, ename, hiredate,      
 DECODE(MOD(TO_NUMBER(TO_CHAR(hiredate, 'YYYY')),2),
-        MOD(TO_NUMBER(TO_CHAR(hiredate, 'YYYY')),2),'건강검진대상자', '건강검진비대상자') 검진
+        MOD(TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')),2),'건강검진대상자', '건강검진비대상자') 검진
         FROM emp;
         
 -- DATE 타입 -> 문자열(여러가지 포맷, YYYY-MM-DD HH24:MI:SS)
@@ -74,6 +74,7 @@ FROM dual;
 --부서별 급여 합
 SELECT deptno, ename,
         SUM(sal) SUM_sal, MAX(sal) max_sal, MIN(sal) min_sal, ROUND(AVG(sal),2) avg_sal, COUNT(sal)
+
 FROM emp
 GROUP BY deptno, ename;
 
@@ -93,6 +94,7 @@ SELECT  SUM(sal) SUM_sal, MAX(sal) max_sal, MIN(sal) min_sal, ROUND(AVG(sal),2) 
         COUNT(*) -- 몇건의 데이터가 있는지
 FROM emp
 GROUP BY empno;
+
 
 --그룹화와 관련없는 임의의 문자열, 함수 ,숫자등은 SELECT 절에 나오는것이 가능
 SELECT 1,SYSDATE, 'ACCOUNTING', SUM(sal) SUM_sal, MAX(sal) max_sal, MIN(sal) min_sal, ROUND(AVG(sal),2) avg_sal,
@@ -118,7 +120,7 @@ HAVING SUM(sal) >= 9000;
 SELECT MAX(sal), MIN(sal), ROUND(avg(sal),2), SUM(sal), COUNT(sal), COUNT(mgr), COUNT(*)
 FROM emp;
 
---group function 연습문제 grp2
+--group function 연습문제 grp3
 SELECT deptno,
 case
     WHEN deptno = 10 THEN 'ACCOUNTING' 
@@ -172,7 +174,12 @@ FROM
 GROUP BY deptno);
 
 
+-- condition 실습 연습문제 3
 
+SELECT userid, usernm , alias, reg_dt,
+    decode(MOD(TO_NUMBER(TO_CHAR(reg_dt, 'YYYY')),2),
+        MOD(TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')),2),'건강검진대상자','건강검진비대상자')
+FROM users;
 
 
 
